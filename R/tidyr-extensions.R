@@ -47,7 +47,7 @@ spread_multi_values <- function(data, key, values) {
 
 #' Spread key-value pairs composed of multiple keys and values
 #'
-#' \code{spread_sg} allows the use of the \code{spread} function from
+#' \code{spread_multi} allows the use of the \code{spread} function from
 #' \code{tidyr} over multiple keys and values. Essentially, keys and values
 #' will be combined into one key and value, then separated in the final data
 #' frame as appropriate.
@@ -56,7 +56,7 @@ spread_multi_values <- function(data, key, values) {
 #' @param values One or more column names.
 #' @seealso \code{\link[tidyr]{spread}}
 #' @export
-spread_sg <- function(data, keys, values) {
+spread_multi <- function(data, keys, values) {
 
     if (length(setdiff(c(keys, values), colnames(data))) != 0) {
         stop("One or more specified columns are not in colnames(data).")
