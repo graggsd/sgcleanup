@@ -12,7 +12,7 @@
 #' \code{"sci"}, then the values are converted to scientific notation.
 #' @return A vector of formatted p-values.
 #' @export
-format_p_val <- function(x, digits = 3, cutoff_action = "inequality") {
+format_p_val <- function(x, digits = 3, cutoff_action = "inequality", format_sci = NULL) {
     if (is.character(x)) {
         x <- as.numeric(x)
     }
@@ -30,6 +30,10 @@ format_p_val <- function(x, digits = 3, cutoff_action = "inequality") {
 
     x[idx1] <- less
     x[idx2] <- greater
+
+    if(!is.null(format_sci)) {
+        x <- gsub("e", format_sci, x)
+    }
 
     return(x)
 }
