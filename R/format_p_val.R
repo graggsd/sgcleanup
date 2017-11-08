@@ -10,6 +10,8 @@
 #' are less than the specified number of digits. If set to \code{"inequality"},
 #' then the function replaces these values with \code{"<cutoff"}. If set to
 #' \code{"sci"}, then the values are converted to scientific notation.
+#' @param format_sci A string with which to replace the standard "e" scientific
+#' notation.
 #' @return A vector of formatted p-values.
 #' @export
 format_p_val <- function(x, digits = 3, cutoff_action = "inequality", format_sci = NULL) {

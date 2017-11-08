@@ -4,7 +4,8 @@
 \alias{format_p_val}
 \title{Format p-value with a specified significant digit cutoff}
 \usage{
-format_p_val(x, digits = 3, cutoff_action = "inequality")
+format_p_val(x, digits = 3, cutoff_action = "inequality",
+  format_sci = NULL)
 }
 \arguments{
 \item{x}{A vector of p-values}
@@ -15,6 +16,9 @@ format_p_val(x, digits = 3, cutoff_action = "inequality")
 are less than the specified number of digits. If set to \code{"inequality"},
 then the function replaces these values with \code{"<cutoff"}. If set to
 \code{"sci"}, then the values are converted to scientific notation.}
+
+\item{format_sci}{A string with which to replace the standard "e" scientific
+notation.}
 }
 \value{
 A vector of formatted p-values.
