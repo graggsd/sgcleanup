@@ -33,3 +33,13 @@ format_p_val <- function(x, digits = 3, cutoff_action = "inequality") {
 
     return(x)
 }
+
+#' Round, leaving trailing zeroes
+#'
+#' @param x A numerical vector
+#' @param digits digits to round to
+#' @return A vector of rounded numbers.
+#' @export
+round_tz <- function(x, digits = 2) {
+    return(format(round(x, digits = digits), nsmall = digits))
+}
