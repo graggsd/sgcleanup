@@ -47,6 +47,5 @@ format_p_val <- function(x, digits = 3, cutoff_action = "inequality", format_sci
 #' @return A vector of rounded numbers.
 #' @export
 round_tz <- function(x, digits = 2) {
-    return(gsub(" ", "",
-                format(round(x, digits = digits), nsmall = digits)))
+    return(format(round(x, digits = digits), nsmall = digits))
 }
