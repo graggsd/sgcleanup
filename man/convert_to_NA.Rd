@@ -4,19 +4,19 @@
 \alias{convert_to_NA}
 \title{Convert values to NA}
 \usage{
-convert_to_NA(x, na_vals, cols = NULL)
+convert_to_NA(x, from, cols = NULL)
 }
 \arguments{
-\item{data}{A data frame}
+\item{x}{A data frame}
 
-\item{keys}{One or more values that should be converted to NA.}
+\item{from}{One or more values that should be converted to NA.}
 
-\item{values}{0 or more column names or positions.}
+\item{cols}{0 or more column names or positions.}
 }
 \description{
-\code{convert_to_NA} finds values sepcified by \code{na_vals} and sets them
+\code{convert_to_NA} finds values specified by \code{from} and sets them
 to NA.
 }
 \seealso{
-\code{\link[tidyr]{spread}}
+\code{\link[sgcleanup]{convert_from_NA}}
 }

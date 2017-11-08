@@ -4,18 +4,23 @@
 \alias{format_p_val}
 \title{Format p-value with a specified significant digit cutoff}
 \usage{
-format_p_val(x, digits = 3)
+format_p_val(x, digits = 3, cutoff_action = "inequality")
 }
 \arguments{
 \item{x}{A vector of p-values}
 
 \item{digits}{how many significant digits are to be used.}
+
+\item{cutoff_action}{Determines the behavior of the function for values that
+are less than the specified number of digits. If set to \code{"inequality"},
+then the function replaces these values with \code{"<cutoff"}. If set to
+\code{"sci"}, then the values are converted to scientific notation.}
 }
 \value{
 A vector of formatted p-values.
 }
 \description{
-\code{format_p_value} will take a set of p-values, round to the specified
+Takes a set of p-values, rounds to the specified
 significant digits, and convert values that are less than the specified
-cutoff to "<'cutoff'"
+cutoff to "<'cutoff'". Maintains consistent numbers of significant digits.
 }
