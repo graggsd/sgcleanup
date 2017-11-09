@@ -15,3 +15,12 @@ add_OR_bounds.data.frame <- function(x, ...) {
     x$Upper <- exp(x$estimate + 1.96*x$std.error)
     return(x)
 }
+
+add_OR_bounds.tbl_df <- function(x, ...) {
+    stopifnot("estimate" %in% colnames(x),
+              "std.error" %in% colnames(x))
+    x$OR <- exp(x$estimate)
+    x$Lower <- exp(x$estimate - 1.96*x$std.error)
+    x$Upper <- exp(x$estimate + 1.96*x$std.error)
+    return(x)
+}
