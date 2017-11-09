@@ -14,7 +14,8 @@
 #' notation.
 #' @return A vector of formatted p-values.
 #' @export
-format_p_val <- function(x, digits = 3, cutoff_action = "inequality", format_sci = NULL) {
+format_p_val <- function(x, digits = 3, cutoff_action = "inequality",
+                         format_sci = NULL) {
     if (is.character(x)) {
         x <- as.numeric(x)
     }
@@ -24,7 +25,9 @@ format_p_val <- function(x, digits = 3, cutoff_action = "inequality", format_sci
     if (cutoff_action == "inequality") {
         less <- paste0("<", cutoff)
     } else if(cutoff_action == "sci") {
-        less <- format(x[idx1], digits = digits)
+        less <- format(x[idx1],
+                       digits = digits,
+                       scientific = TRUE)
     }
 
     idx2 <- which(x >= cutoff)
