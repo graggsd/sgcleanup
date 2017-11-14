@@ -3,6 +3,7 @@
 export(add_OR_bounds)
 export(convert_from_NA)
 export(convert_to_NA)
+export(edit_values)
 export(format_p_val)
 export(refactor_by_idx)
 export(round_tz)
