@@ -1,2 +1,3 @@
-#' @import magrittr dplyr tidyr
+#' @import dplyr tidyr
+#' @importFrom magrittr %>%
 NULL
