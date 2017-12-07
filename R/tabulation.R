@@ -10,7 +10,7 @@
 tabulate_wd <- function(dat, cols) {
     dat %>%
         select(cols) %>%
-        mutate(idx = 1:nrow(data)) %>%
+        mutate(idx = 1:nrow(dat)) %>%
         gather_("column", "value", cols) %>%
         group_by(column, value) %>%
         summarise(count = n()) %>%
