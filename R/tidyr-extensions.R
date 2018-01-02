@@ -84,3 +84,34 @@ spread_multi <- function(data, keys, values) {
     return(data)
 
 }
+
+get_factor_levels <- function(x, cols) {
+    levs <- NULL
+    for (col in cols) {
+        levs <- c(levs, levels(x[, col]))
+    }
+    return(levs)
+}
+
+
+#' @export
+gather_factors <- function(x, key = "key", value = "value", cols) {
+
+    val_levels <- get_factor_levels(x, cols)
+
+    # x %>%
+    #     tidyr::gather(key = key, value = value, cols, factor_key = TRUE) %>%
+    #     dplyr::mutate_at(value, funs(factor(.)), levels = val_levels)
+
+    withCallingHandlers(
+        x %>%
+            tidyr::gather(key = key, value = value, cols, factor_key = TRUE) %>%
+            dplyr::mutate_at(value, funs(factor(.)), levels = val_levels),
+        warning = function(w){
+            if (grepl("attributes are not identical across measure",
+                      w$message)) {
+                invokeRestart("muffleWarning")
+            }
+        }
+    )
+}
