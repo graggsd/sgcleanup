@@ -90,18 +90,18 @@ get_factor_levels <- function(x, cols) {
     for (col in cols) {
         levs <- c(levs, levels(x[, col]))
     }
-    return(levs)
+    if (sum(duplicated(levs)) > 0) {
+        warning(paste0("The following factor levels were found to be",
+                       " duplicated between one or more columns: ",
+                       paste(unique(levs[duplicated(levs)]), collapse = ", ")))
+    }
+    return(unique(levs))
 }
-
 
 #' @export
 gather_factors <- function(x, key = "key", value = "value", cols) {
 
     val_levels <- get_factor_levels(x, cols)
-
-    # x %>%
-    #     tidyr::gather(key = key, value = value, cols, factor_key = TRUE) %>%
-    #     dplyr::mutate_at(value, funs(factor(.)), levels = val_levels)
 
     withCallingHandlers(
         x %>%
