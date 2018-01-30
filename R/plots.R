@@ -60,6 +60,24 @@ wd_qnorm <- function(data, variables) {
     return(figure)
 }
 
+#' @export
+wd_violin <- function(data, variables, y = NULL) {
+    tmp.dat <- data %>%
+        get_tidy_dat(vars = variables)
+
+    if (is.null(y)) {
+        tmp.dat <- cbind(tmp.dat, y = "")
+    }
+
+    tmp.dat %>%
+        ggplot(aes(x = y, y = num.val)) +
+        geom_violin(fill = "grey") +
+        facet_wrap(~variable, scales = "free") +
+        ggthemes::theme_base() +
+        labs(x = NULL, y = "Value")
+
+}
+
 get_tidy_dat <- function(x, vars) {
 
     x %>%
