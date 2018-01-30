@@ -28,9 +28,11 @@ wd_histograms <- function(data, variables, log.scale = T) {
 #' @export
 wd_qnorm <- function(data, variables) {
 
-    tmp.data <- data[,variables] %>%
-        gather(key = variable, value = num.val) %>%
-        na.omit()
+    test_assumptions(x = data,
+                     vars = variables)
+
+    tmp.data <- get_tidy_dat(x = data,
+                             vars = variables)
 
     summary.data <- tmp.data %>%
         group_by(variable) %>%
@@ -56,4 +58,32 @@ wd_qnorm <- function(data, variables) {
              y = "Observed (Value)")
 
     return(figure)
+}
+
+get_tidy_dat <- function(x, vars) {
+
+    x %>%
+        select(vars) %>%
+        gather(key = variable, value = num.val) %>%
+        na.omit()
+}
+
+test_assumptions <- function(x, vars) {
+    if (sum(vars %in% colnames(x)) != length(vars)) {
+        stop(paste("The following variables are not contained in the dataset:",
+                    paste0(vars[!(vars %in% colnames(x))],
+                           collapse = ", ")))
+    }
+    if (length(vars) > 1) {
+        if (sum(sapply(x[, vars], is.numeric)) != length(vars)) {
+            stop(paste("The following columns are not numeric:",
+                       paste0(vars[!sapply(x[, vars], is.numeric)],
+                              collapse = ", ")))
+        }
+    } else {
+
+        if (!is.numeric(x[, vars])) {
+            stop(paste(vars, "is not numeric."))
+        }
+    }
 }
