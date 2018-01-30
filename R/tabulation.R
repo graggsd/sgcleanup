@@ -17,3 +17,4 @@ tabulate_wd <- function(dat, cols) {
         spread(value, count, fill = 0) %>%
         as.data.frame(stringsAsFactors = FALSE)
 }
+
