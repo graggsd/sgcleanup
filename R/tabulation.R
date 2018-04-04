@@ -9,12 +9,12 @@
 #' @export
 tabulate_wd <- function(dat, cols) {
     dat %>%
-        select(cols) %>%
-        mutate(idx = 1:nrow(dat)) %>%
-        gather_("column", "value", cols) %>%
-        group_by(column, value) %>%
-        summarise(count = n()) %>%
-        spread(value, count, fill = 0) %>%
+        dplyr::select(cols) %>%
+        dplyr::mutate(idx = 1:nrow(dat)) %>%
+        dplyr::gather_("column", "value", cols) %>%
+        dplyr::group_by(column, value) %>%
+        dplyr::summarise(count = n()) %>%
+        tidyr::spread(value, count, fill = 0) %>%
         as.data.frame(stringsAsFactors = FALSE)
 }
 
