@@ -11,7 +11,7 @@ tabulate_wd <- function(dat, cols) {
     dat %>%
         dplyr::select(cols) %>%
         dplyr::mutate(idx = 1:nrow(dat)) %>%
-        dplyr::gather_("column", "value", cols) %>%
+        tidyr::gather("column", "value", cols) %>%
         dplyr::group_by(column, value) %>%
         dplyr::summarise(count = n()) %>%
         tidyr::spread(value, count, fill = 0) %>%
